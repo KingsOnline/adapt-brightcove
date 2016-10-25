@@ -7,6 +7,7 @@ define(function(require) {
 
     var ComponentView = require("coreViews/componentView");
     var Adapt = require("coreJS/adapt");
+    var videoJs = require('components/adapt-brightcove/js/brightcove');
 
     var Brightcove = ComponentView.extend({
 
@@ -15,7 +16,6 @@ define(function(require) {
         },
 
         preRender: function() {
-            console.log(this);
               //this.listenTo(Adapt, 'device:changed', this.resizeControl);
         },
 
@@ -27,10 +27,27 @@ define(function(require) {
             });
         },
 
+
         inview: function(event, visible) {
-            // if (visible) {
-            //     this.setCompletionStatus();
-            // }
+
+            var myPlayer = videojs('example_video_1');
+            // myPlayer.on('loadstart',doLoadStart);
+            console.log(myPlayer);
+            console.log(myPlayer.id(),"id");
+            this.changeVideo(myPlayer);
+        },
+
+        doLoadStart: function() {
+          console.log("start load");
+        },
+
+
+        changeVideo: function(myPlayer) {
+          console.log(document.getElementsByClassName("video-js")[0]);
+          document.getElementsByClassName("video-js")[0].setAttribute("data-video-id", "5166470429001");
+          myPlayer.play();
+          //myPlayer.src({"type":"video/mp4", "src":"http://solutions.brightcove.com/bcls/assets/videos/Bird_Titmouse.mp4"});
+          myPlayer.play();
         },
 
         resizeControl: function(size) {
@@ -41,7 +58,7 @@ define(function(require) {
         }
 
     });
-
     Adapt.register("brightcove", Brightcove);
     return Brightcove;
+
 });
