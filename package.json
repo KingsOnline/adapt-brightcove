@@ -1,20 +1,10 @@
 {
-  "name": "adapt-contrib-responsiveIframe",
+  "name": "adapt-brightcove",
   "version": "1.0.3",
   "description": "Renders embedded content inside an IFRAME tag that will respond to theme breakpoints.",
   "main": "",
-  "scripts": {
-    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/LearningPool/adapt-contrib-responsiveIframe.git"
-  },
   "author": "AdaptLearning",
   "license": "GPL v3",
-  "bugs": {
-    "url": "https://github.com/LearningPool/adapt-contrib-responsiveIframe/issues"
-  },
   "devDependencies": {
     "grunt": "~0.4.2",
     "karma-script-launcher": "~0.1.0",

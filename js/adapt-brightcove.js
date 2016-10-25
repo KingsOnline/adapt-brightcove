@@ -8,39 +8,40 @@ define(function(require) {
     var ComponentView = require("coreViews/componentView");
     var Adapt = require("coreJS/adapt");
 
-    var ResponsiveIframe = ComponentView.extend({
+    var Brightcove = ComponentView.extend({
 
         events: {
             'inview':'inview'
         },
 
         preRender: function() {
-            this.listenTo(Adapt, 'device:changed', this.resizeControl);
+            console.log(this);
+              //this.listenTo(Adapt, 'device:changed', this.resizeControl);
         },
 
         postRender: function() {
             var that = this;
-            this.$('.responsiveIframe-iframe').ready(function() {
+            this.$('.brightcove-iframe').ready(function() {
                 that.resizeControl(Adapt.device.screenSize);
                 that.setReadyStatus();
             });
         },
 
         inview: function(event, visible) {
-            if (visible) {
-                this.setCompletionStatus();
-            }
+            // if (visible) {
+            //     this.setCompletionStatus();
+            // }
         },
 
         resizeControl: function(size) {
-            var width = this.$('.responsiveIframe-iframe').attr('data-width-' + size);
-            var height = this.$('.responsiveIframe-iframe').attr('data-height-' + size);
-            this.$('.responsiveIframe-iframe').width(width);
-            this.$('.responsiveIframe-iframe').height(height);
+            var width = this.$('.brightcove-iframe').attr('data-width-' + size);
+            var height = this.$('.brightcove-iframe').attr('data-height-' + size);
+            this.$('.brightcove-iframe').width(width);
+            this.$('.brightcove-iframe').height(height);
         }
 
     });
 
-    Adapt.register("responsiveIframe", ResponsiveIframe);
-
+    Adapt.register("brightcove", Brightcove);
+    return Brightcove;
 });

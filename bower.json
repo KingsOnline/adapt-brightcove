@@ -1,17 +1,17 @@
 {
-  "name": "adapt-contrib-responsiveIframe",
+  "name": "adapt-brightcove",
   "version": "1.0.3",
-  "homepage": "https://github.com/LearningPool/adapt-contrib-responsiveIframe",
+  "framework": "^2.0.0",
   "authors": [
     "Kevin Corry <kevinc@learningpool.com>"
   ],
   "description": "Allows embedded content inside an iframe tag that will respond to theme breakpoints.",
-  "main": "/js/adapt-contrib-responsiveIframe.js",
+  "main": "/js/adapt-brightcove.js",
   "keywords": [
     "adapt-plugin",
     "adapt-component"
   ],
-  "displayName": "Responsive IFrame",
-  "component": "responsiveIframe",
+  "displayName": "Brightcove",
+  "component": "brightcove",
   "license": "GPLv3"
 }
