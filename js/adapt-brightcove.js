@@ -12,7 +12,6 @@ define(function(require) {
     var Brightcove = ComponentView.extend({
 
         events: {
-            'inview':'inview'
         },
 
         preRender: function() {
@@ -20,34 +19,17 @@ define(function(require) {
         },
 
         postRender: function() {
-            var that = this;
-            this.$('.brightcove-iframe').ready(function() {
-                that.resizeControl(Adapt.device.screenSize);
-                that.setReadyStatus();
-            });
-        },
-
-
-        inview: function(event, visible) {
-
-            var myPlayer = videojs('example_video_1');
-            // myPlayer.on('loadstart',doLoadStart);
-            console.log(myPlayer);
-            console.log(myPlayer.id(),"id");
-            this.changeVideo(myPlayer);
+          myPlayerID.setAttribute('data-video-id', 5166470429001);
+          myPlayerID.setAttribute('data-account', 4629028765001);
+          myPlayerID.setAttribute('data-player', 'default');
+          bc(document.getElementById("myPlayerID"));
+          myPlayer = videojs("myPlayerID");
+          myPlayer.play();
+          this.setReadyStatus();
         },
 
         doLoadStart: function() {
           console.log("start load");
-        },
-
-
-        changeVideo: function(myPlayer) {
-          console.log(document.getElementsByClassName("video-js")[0]);
-          document.getElementsByClassName("video-js")[0].setAttribute("data-video-id", "5166470429001");
-          myPlayer.play();
-          //myPlayer.src({"type":"video/mp4", "src":"http://solutions.brightcove.com/bcls/assets/videos/Bird_Titmouse.mp4"});
-          myPlayer.play();
         },
 
         resizeControl: function(size) {
@@ -58,6 +40,14 @@ define(function(require) {
         }
 
     });
+
+    Adapt.on("pageView:preRender", function() {
+      var hamburgerIcon = "<script src='https://players.brightcove.net/4629028765001/default_default/index.min.js'></script>";
+      $('body').append(hamburgerIcon);
+    });
+
+
+
     Adapt.register("brightcove", Brightcove);
     return Brightcove;
 
