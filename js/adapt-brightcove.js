@@ -6,6 +6,36 @@ define(function(require) {
 
     var Brightcove = ComponentView.extend({
 
+
+        events: {
+            "click .media-inline-transcript-button": "onToggleInlineTranscript"
+        },
+
+
+
+        onToggleInlineTranscript: function(event) {
+            if (event) event.preventDefault();
+            var $transcriptBodyContainer = this.$(".media-inline-transcript-body-container");
+            var $button = this.$(".media-inline-transcript-button");
+
+            if ($transcriptBodyContainer.hasClass("inline-transcript-open")) {
+                $transcriptBodyContainer.slideUp(function() {
+                    $(window).resize();
+                });
+                $transcriptBodyContainer.removeClass("inline-transcript-open");
+                $button.html(this.model.get("_transcript").inlineTranscriptButton);
+            } else {
+                $transcriptBodyContainer.slideDown(function() {
+                    $(window).resize();
+                }).a11y_focus();
+                $transcriptBodyContainer.addClass("inline-transcript-open");
+                $button.html(this.model.get("_transcript").inlineTranscriptCloseButton);
+                if (this.model.get('_transcript')._setCompletionOnView !== false) {
+                    this.setCompletionStatus();
+                }
+            }
+        },
+
         assignID: function() {
             var id = 'v' + Math.floor(Math.random() * (65535 - 0) + 0);
             this.$('.brightcove-video-holder :first-child').attr('id', id);
