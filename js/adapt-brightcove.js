@@ -2,7 +2,7 @@ define(function(require) {
 
     var ComponentView = require("coreViews/componentView");
     var Adapt = require("coreJS/adapt");
-    var brightcove = require('./brightcove');
+    var brightcove = require('components/adapt-brightcove/js/brightcove');
 
     var Brightcove = ComponentView.extend({
 
@@ -10,8 +10,6 @@ define(function(require) {
         events: {
             "click .media-inline-transcript-button": "onToggleInlineTranscript"
         },
-
-
 
         onToggleInlineTranscript: function(event) {
             if (event) event.preventDefault();
@@ -46,6 +44,7 @@ define(function(require) {
             this.createPlayer();
             this.setReadyStatus();
         },
+
 
 
         createPlayer: function() {
