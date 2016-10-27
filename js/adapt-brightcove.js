@@ -21,14 +21,14 @@ define(function(require) {
         postRender: function() {
           console.log($(this));
 
-          var e = this.$('.brightcove-video-holder :first-child').attr('id');
+          var e = this.$('.brightcove-video-holder :first-child');
           console.log(e);
 
-          myPlayerID.setAttribute('data-video-id', this.model.get("_videoId"));
-          myPlayerID.setAttribute('data-account', 4629028765001); // hard coded for King's College but we can make this an option if we open source this.
-          myPlayerID.setAttribute('data-player', 'default');
-          bc(document.getElementById("myPlayerID"));
-          myPlayer = videojs("myPlayerID");
+          e.attr('data-video-id', this.model.get("_videoId"));
+          e.attr('data-account', 4629028765001); // hard coded for King's College but we can make this an option if we open source this.
+          e.attr('data-player', 'default');
+          bc(e.attr('id'));
+          myPlayer = videojs(e.attr('id'));
           this.setReadyStatus();
         },
 
