@@ -1,10 +1,17 @@
 .brightcove-component {
     .brightcove-video-holder {
-        height: 600px;
+        width: 100%;
+        height: 500px;
+        @media (max-width: @device-width-medium) {
+            height: 400px;
+        }
+        @media (max-width: @device-width-small) {
+            height: 300px;
+        }
     }
 
     .video-js {
-        height: inherit;
-        width: inherit;
+        height: 100%;
+        width: 100%;
     }
 }

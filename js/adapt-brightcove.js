@@ -45,15 +45,6 @@ define(function(require) {
             });
             console.log('myplayer');
             console.log(myPlayer);
-        },
-
-
-
-        resizeControl: function(size) {
-            var width = this.$('.brightcove-iframe').attr('data-width-' + size);
-            var height = this.$('.brightcove-iframe').attr('data-height-' + size);
-            this.$('.brightcove-iframe').width(width);
-            this.$('.brightcove-iframe').height(height);
         }
 
     });
