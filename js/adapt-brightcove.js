@@ -19,12 +19,16 @@ define(function(require) {
         },
 
         postRender: function() {
-          myPlayerID.setAttribute('data-video-id', 5166470429001);
-          myPlayerID.setAttribute('data-account', 4629028765001);
+          console.log($(this));
+
+          var e = this.$('.brightcove-video-holder :first-child').attr('id');
+          console.log(e);
+
+          myPlayerID.setAttribute('data-video-id', this.model.get("_videoId"));
+          myPlayerID.setAttribute('data-account', 4629028765001); // hard coded for King's College but we can make this an option if we open source this.
           myPlayerID.setAttribute('data-player', 'default');
           bc(document.getElementById("myPlayerID"));
           myPlayer = videojs("myPlayerID");
-          myPlayer.play();
           this.setReadyStatus();
         },
 
@@ -42,11 +46,20 @@ define(function(require) {
     });
 
     Adapt.on("pageView:preRender", function() {
-      var hamburgerIcon = "<script src='https://players.brightcove.net/4629028765001/default_default/index.min.js'></script>";
-      $('body').append(hamburgerIcon);
+      // var hamburgerIcon = "<script src='https://players.brightcove.net/4629028765001/default_default/index.min.js'></script>";
+      // $('body').append(hamburgerIcon);
+      assignID();
     });
 
-
+    function assignID() {
+      console.log($(".block"));
+      if ($(".brightcove-inner").length > 0) {
+          // Do stuff with $(".Mandatory")
+          $(".brightcove-inner").each(function() {
+              console.log('h');
+          });
+      }
+    }
 
     Adapt.register("brightcove", Brightcove);
     return Brightcove;
