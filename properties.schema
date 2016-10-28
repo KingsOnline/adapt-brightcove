@@ -1,8 +1,26 @@
 {
-  "type":"object",
+  "type": "object",
   "$schema": "http://json-schema.org/draft-04/schema",
   "id": "http://jsonschema.net",
   "$ref": "http://localhost/plugins/content/component/model.schema",
+  "globals": {
+    "ariaRegion": {
+      "type": "string",
+      "required": true,
+      "default": "This is a media component which plays a video. Select the play / pause button to watch or listen.",
+      "inputType": "Text",
+      "validators": [],
+      "translatable": true
+    },
+    "transcriptButton": {
+      "type": "string",
+      "required": false,
+      "default": "Alternatively you can select the link below for the transcript.",
+      "inputType": "Text",
+      "validators": [],
+      "translatable": true
+    }
+  },
   "properties": {
     "_supportedLayout": {
       "type": "string",
@@ -17,86 +35,116 @@
       "default": "",
       "inputType": "Text",
       "validators": [],
-      "help": "This is the instruction text"
+      "help": "This is the instruction text",
+      "translatable": true
     },
-    "_source": {
+    "_videoId": {
       "type": "string",
       "required": true,
-      "title": "URL",
       "default": "",
       "inputType": "Text",
-      "validators": ["required"],
-      "help": "The URL which will be rendered inside the <iframe>"
+      "validators": [],
+      "help": "Video ID",
+      "help": "Copy the ID under 'VIDEO INFORMATION'",
+      "translatable": false
     },
-    "_scrolling": {
+    "_setCompletionOn": {
       "type": "string",
       "required": true,
-      "title": "Scrolling",
-      "default": "no",
-      "enum": ["auto", "yes", "no"],
-      "inputType": {"type": "Select", "options": ["auto", "yes", "no"]},
+      "enum": ["inview", "play", "ended"],
+      "default": "ended",
+      "title": "Set completion of Video on",
+      "inputType": {
+        "type": "Select",
+        "options": ["inview", "play", "ended"]
+      },
       "validators": ["required"],
-      "help": "The scrolling attribute specifies whether or not to display scrollbars in an <iframe>"
+      "help": "This tells Adapt when to set this video to complete"
     },
-    "_width": {
+    "_transcript": {
       "type": "object",
-      "required": true,
-      "title": "Width of the <iframe> in specified breakpoints",
+      "required": false,
+      "title": "Transcript Options",
       "properties": {
-        "_small": {
-          "type": "number",
-          "required": true,
-          "title": "Small width",
-          "inputType": "Number",
-          "validators": ["number", "required"],
-          "help": "Width with a small viewport"
+        "_setCompletionOnView": {
+          "type": "boolean",
+          "required": false,
+          "default": true,
+          "title": "Set Completion",
+          "inputType": {
+            "type": "Boolean",
+            "options": [true, false]
+          },
+          "validators": [],
+          "help": "This tells Adapt to set this video to complete when the inline transcript is shown"
         },
-        "_medium": {
-          "type": "number",
-          "required": true,
-          "title": "Medium width",
-          "inputType": "Number",
-          "validators": ["number", "required"],
-          "help": "Width with a medium viewport"
+        "_inlineTranscript": {
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "title": "Show Inline",
+          "inputType": {
+            "type": "Boolean",
+            "options": [true, false]
+          },
+          "validators": []
         },
-        "_large": {
-          "type": "number",
-          "required": true,
-          "title": "Large width",
-          "inputType": "Number",
-          "validators": ["number", "required"],
-          "help": "Width with a large viewport"
-        }
-      }
-    },
-    "_height": {
-      "type": "object",
-      "required": true,
-      "title": "Height of the <iframe> in specified breakpoints",
-      "properties": {
-        "_small": {
-          "type": "number",
-          "required": true,
-          "title": "Small height",
-          "inputType": "Number",
-          "validators": ["number", "required"],
-          "help": "Height with a small viewport"
+        "_externalTranscript": {
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "title": "Show Link",
+          "inputType": {
+            "type": "Boolean",
+            "options": [true, false]
+          },
+          "validators": []
         },
-        "_medium": {
-          "type": "number",
-          "required": true,
-          "title": "Medium height",
-          "inputType": "Number",
-          "validators": ["number", "required"],
-          "help": "Height with a medium viewport"
+        "inlineTranscriptButton": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Inline Open Button",
+          "inputType": "Text",
+          "validators": [],
+          "translatable": true
         },
-        "_large": {
-          "type": "number",
-          "required": true,
-          "title": "Large height",
-          "inputType": "Number",
-          "validators": ["number", "required"],
-          "help": "Height with a large viewport"
+        "inlineTranscriptCloseButton": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Inline Close Button",
+          "inputType": "Text",
+          "validators": [],
+          "translatable": true
+        },
+        "inlineTranscriptBody": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Inline Transcript",
+          "inputType": "TextArea",
+          "validators": [],
+          "help": "Optional text appears below the video",
+          "translatable": true
+        },
+        "transcriptLinkButton": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Link Open Button",
+          "inputType": "Text",
+          "validators": [],
+          "translatable": true
+        },
+        "transcriptLink": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Transcript Link",
+          "inputType": "Asset:other",
+          "validators": [],
+          "help": "Select a file for the transcript link"
         }
       }
     }
