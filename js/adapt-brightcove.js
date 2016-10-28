@@ -1,11 +1,10 @@
-define(function(require) {
-
-    var ComponentView = require("coreViews/componentView");
-    var Adapt = require("coreJS/adapt");
-    var brightcove = require('components/adapt-brightcove/js/brightcove');
+define([
+ "coreViews/componentView",
+  "core/js/adapt"
+], function(ComponentView, Adapt) {
+    $("head").append('<script>$.getScript("https://players.brightcove.net/4629028765001/default_default/index.min.js", function() { require(["bc"], function(bc) { window.bc = bc; }); });</script>');
 
     var Brightcove = ComponentView.extend({
-
 
         events: {
             "click .media-inline-transcript-button": "onToggleInlineTranscript"
@@ -35,7 +34,7 @@ define(function(require) {
         },
 
         assignID: function() {
-            var id = 'v' + Math.floor(Math.random() * (65535 - 0) + 0);
+            var id = 'v' + Math.floor(Math.random() * (65535));
             this.$('.brightcove-video-holder :first-child').attr('id', id);
         },
 
@@ -44,8 +43,6 @@ define(function(require) {
             this.createPlayer();
             this.setReadyStatus();
         },
-
-
 
         createPlayer: function() {
             var e = this.$('.brightcove-video-holder :first-child');
@@ -72,8 +69,6 @@ define(function(require) {
                     context.setCompletionStatus();
                 });
             });
-            console.log('myplayer');
-            console.log(myPlayer);
         }
 
     });
