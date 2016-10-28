@@ -1,6 +1,6 @@
 define([
- "coreViews/componentView",
-  "core/js/adapt"
+    "coreViews/componentView",
+    "core/js/adapt"
 ], function(ComponentView, Adapt) {
     $("head").append('<script>$.getScript("https://players.brightcove.net/4629028765001/default_default/index.min.js", function() { require(["bc"], function(bc) { window.bc = bc; }); });</script>');
 
@@ -33,23 +33,23 @@ define([
             }
         },
 
-        assignID: function() {
-            var id = 'v' + Math.floor(Math.random() * (65535));
-            this.$('.brightcove-video-holder :first-child').attr('id', id);
-        },
-
         postRender: function() {
-            this.assignID();
-            this.createPlayer();
+            var e = this.$('.brightcove-video-holder :first-child');
+            var eid = this.assignID(e);
+            this.createPlayer(e, eid);
             this.setReadyStatus();
         },
 
-        createPlayer: function() {
-            var e = this.$('.brightcove-video-holder :first-child');
+        assignID: function() {
+            var id = 'v' + Math.floor(Math.random() * (65535));
+            this.$('.brightcove-video-holder :first-child').attr('id', id);
+            return id;
+        },
+
+        createPlayer: function(e, eID) {
             e.attr('data-video-id', this.model.get("_videoId"));
             e.attr('data-account', 4629028765001); // hard coded for King's College but we can make this an option if we open source this.
             e.attr('data-player', 'default'); // hard coded for King's College but we can make this an option if we open source this.
-            var eID = e.attr('id');
             bc(eID);
 
             var context = this;
@@ -70,7 +70,6 @@ define([
                 });
             });
         }
-
     });
 
     Adapt.register("brightcove", Brightcove);
