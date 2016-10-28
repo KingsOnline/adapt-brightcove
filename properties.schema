@@ -44,8 +44,18 @@
       "default": "",
       "inputType": "Text",
       "validators": [],
-      "help": "Video ID",
+      "title": "Video Id",
       "help": "Copy the ID under 'VIDEO INFORMATION'",
+      "translatable": false
+    },
+    "_videoPlayer": {
+      "type": "string",
+      "required": false,
+      "default": "default",
+      "inputType": "Text",
+      "validators": [],
+      "title": "Video Player",
+      "help": "Choose the video player you wish to use. Leave blank for default.",
       "translatable": false
     },
     "_setCompletionOn": {

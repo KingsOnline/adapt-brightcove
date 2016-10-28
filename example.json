@@ -7,7 +7,7 @@
   "_layout": "full",
   "title": "Brightcove",
   "displayTitle": "Brightcove",
-  "body": "This is my bespoke brightcove component",
+  "body": "Brightcove component",
   "instruction": "Click the button to play the video",
   "_videoId": "5185888571001",
   "_dataPlayer": "default",

@@ -1,11 +1,11 @@
 {
   "name": "adapt-brightcove",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "framework": "^2.0.0",
   "authors": [
     "Simon Date <simon.date@kcl.ac.uk>"
   ],
-  "description": "A bespoke component for adding Brightcove videos",
+  "description": "A bespoke component for Brightcove video",
   "main": "/js/adapt-brightcove.js",
   "keywords": [
     "adapt-plugin",

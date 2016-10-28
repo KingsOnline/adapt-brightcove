@@ -49,28 +49,24 @@ define([
         createPlayer: function(e, eID) {
             e.attr('data-video-id', this.model.get("_videoId"));
             e.attr('data-account', 4629028765001); // hard coded for King's College but we can make this an option if we open source this.
-            e.attr('data-player', 'default'); // hard coded for King's College but we can make this an option if we open source this.
-            // e.attr('data-player', this.model.get("_videoPlayer"));
+            var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
+            e.attr('data-player', player);
             bc(eID);
 
             var context = this;
             var CompletionOn = this.model.get("_setCompletionOn");
-            console.log(CompletionOn);
 
             var myPlayer = videojs(eID, {}, function() {
 
                 this.on('play', function() {
                   if(CompletionOn === 'play')
                     context.setCompletionStatus();
-                    console.log('playing');
                 });
 
                 this.on('pause', function() {
-                    console.log('pausing');
                 });
 
                 this.on('ended', function() {
-                    console.log('ended');
                     if(CompletionOn === 'ended')
                     context.setCompletionStatus();
                 });
