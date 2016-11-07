@@ -54,21 +54,20 @@ define([
             bc(eID);
 
             var context = this;
-            var CompletionOn = this.model.get("_setCompletionOn");
-
+            var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
+            console.log(completionOn);
             var myPlayer = videojs(eID, {}, function() {
 
                 this.on('play', function() {
-                  if(CompletionOn === 'play')
-                    context.setCompletionStatus();
+                    if (completionOn === 'play')
+                        context.setCompletionStatus();
                 });
 
-                this.on('pause', function() {
-                });
+                this.on('pause', function() {});
 
                 this.on('ended', function() {
-                    if(CompletionOn === 'ended')
-                    context.setCompletionStatus();
+                    if (completionOn === 'ended')
+                        context.setCompletionStatus();
                 });
             });
         }
