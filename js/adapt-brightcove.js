@@ -48,14 +48,13 @@ define([
 
         createPlayer: function(e, eID) {
             e.attr('data-video-id', this.model.get("_videoId"));
-            e.attr('data-account', 4629028765001); // hard coded for King's College but we can make this an option if we open source this.
+            e.attr('data-account', this.model.get("_accountId"));
             var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
             e.attr('data-player', player);
             bc(eID);
 
             var context = this;
             var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
-            console.log(completionOn);
             var myPlayer = videojs(eID, {}, function() {
 
                 this.on('play', function() {

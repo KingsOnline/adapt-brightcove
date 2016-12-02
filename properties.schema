@@ -45,7 +45,17 @@
       "inputType": "Text",
       "validators": [],
       "title": "Video Id",
-      "help": "Copy the ID under 'VIDEO INFORMATION'",
+      "help": "",
+      "translatable": false
+    },
+    "_accountId": {
+      "type": "string",
+      "required": true,
+      "default": "",
+      "inputType": "Text",
+      "validators": [],
+      "title": "Account Id",
+      "help": "",
       "translatable": false
     },
     "_videoPlayer": {
@@ -61,12 +71,12 @@
     "_setCompletionOn": {
       "type": "string",
       "required": true,
-      "enum": ["inview", "play", "ended"],
+      "enum": ["play", "ended"],
       "default": "ended",
       "title": "Set completion of Video on",
       "inputType": {
         "type": "Select",
-        "options": ["inview", "play", "ended"]
+        "options": ["play", "ended"]
       },
       "validators": ["required"],
       "help": "This tells Adapt when to set this video to complete"

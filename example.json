@@ -1,6 +1,6 @@
 {
-  "_id": "c-00",
-  "_parentId": "b-00",
+  "_id": "c-05",
+  "_parentId": "b-05",
   "_type": "component",
   "_component": "brightcove",
   "_classes": "",
@@ -9,8 +9,9 @@
   "displayTitle": "Brightcove",
   "body": "Brightcove component",
   "instruction": "Click the button to play the video",
-  "_videoId": "5185888571001",
-  "_dataPlayer": "default",
+  "_accountId": "your account ID here",
+  "_videoId": "your video ID here",
+  "_videoPlayer": "default",
   "_transcript": {
     "_setCompletionOnView": true,
     "_inlineTranscript": true,
