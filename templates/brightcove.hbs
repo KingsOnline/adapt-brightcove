@@ -1,15 +1,14 @@
-{{! Maintainers - Kevin Corry}}
 <div class="component-inner brightcove-inner">
     {{> component this}}
     <div class="brightcove-video-holder">
-      <video data-embed="default" class="video-js" controls></video>
+        <video data-embed="default" class="video-js" controls></video>
     </div>
     {{#if _transcript}}
-    <div class="media-transcript-container">
+        <div class="media-transcript-container">
 
-      <div class="media-transcript-button-container">
-        {{#if _transcript._inlineTranscript}}
-          <button class="media-inline-transcript-button button" role="button">
+            <div class="media-transcript-button-container">
+                {{#if _transcript._inlineTranscript}}
+                    <button class="media-inline-transcript-button button" role="button">
             <div class="transcript-text-container">
               {{#if _transcript.inlineTranscriptButton}}
                 {{_transcript.inlineTranscriptButton}}
@@ -18,9 +17,9 @@
               {{/if}}
             </div>
           </button>
-        {{/if}}
-        {{#if _transcript._externalTranscript}}
-          <button onclick="window.open('{{_transcript.transcriptLink}}')" class="media-external-transcript-button button" role="button">
+                {{/if}}
+                {{#if _transcript._externalTranscript}}
+                    <button onclick="window.open('{{_transcript.transcriptLink}}')" class="media-external-transcript-button button" role="button">
             <div class="transcript-text-container">
               {{#if _transcript.transcriptLinkButton}}
                 {{_transcript.transcriptLinkButton}}
@@ -29,17 +28,16 @@
               {{/if}}
             </div>
           </button>
-        {{/if}}
-        </div>
-
-        {{#if _transcript._inlineTranscript}}
-          <div class="media-inline-transcript-body-container">
-            <div class="media-inline-transcript-body">
-            {{{a11y_text _transcript.inlineTranscriptBody}}}
+                {{/if}}
             </div>
-          </div>
-        {{/if}}
 
-    </div>
+            {{#if _transcript._inlineTranscript}}
+                <div class="media-inline-transcript-body-container">
+                    <div class="media-inline-transcript-body">
+                        {{{a11y_text _transcript.inlineTranscriptBody}}}
+                    </div>
+                </div>
+            {{/if}}
+        </div>
     {{/if}}
 </div>

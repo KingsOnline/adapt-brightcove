@@ -55,7 +55,6 @@ define([
 
             var context = this;
             var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
-            console.log(completionOn);
             var myPlayer = videojs(eID, {}, function() {
 
                 this.on('play', function() {
