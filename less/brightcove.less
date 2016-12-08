@@ -1,7 +1,19 @@
 .brightcove-component {
+    &.component-left,
+    &.component-right {
+        .brightcove-video-holder {
+            height: 280px;
+        }
+    }
+
+    &.component-full {
+        .brightcove-video-holder {
+            height: 500px;
+        }
+    }
+
     .brightcove-video-holder {
         width: 100%;
-        height: 500px;
         @media (max-width: @device-width-medium) {
             height: 400px;
         }
