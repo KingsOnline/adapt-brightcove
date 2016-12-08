@@ -3,28 +3,44 @@
     &.component-right {
         .brightcove-video-holder {
             height: 280px;
+            width: 100%;
+            @media (max-width: @device-width-medium) {
+                height: 400px;
+            }
+            @media (max-width: @device-width-small) {
+                height: 300px;
+            }
         }
     }
 
     &.component-full {
         .brightcove-video-holder {
             height: 500px;
-        }
-    }
-
-    .brightcove-video-holder {
-        width: 100%;
-        @media (max-width: @device-width-medium) {
-            height: 400px;
-        }
-        @media (max-width: @device-width-small) {
-            height: 300px;
+            width: 100%;
+            @media (max-width: @device-width-medium) {
+                height: 400px;
+            }
+            @media (max-width: @device-width-small) {
+                height: 300px;
+            }
         }
     }
 
     .video-js {
         height: 100%;
         width: 100%;
+    }
+
+    .vjs-volume-menu-button {
+        @media (max-width: @device-width-small) {
+            display: none !important;
+        }
+    }
+
+    .vjs-captions-button {
+        @media (max-width: 340px) {
+            display: none !important;
+        }
     }
 
     .media-transcript {
