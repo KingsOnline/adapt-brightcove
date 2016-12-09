@@ -132,7 +132,7 @@
         "_inlineTranscript": {
           "type": "boolean",
           "required": false,
-          "default": false,
+          "default": true,
           "title": "Show Inline",
           "inputType": {
             "type": "Boolean",
@@ -143,7 +143,7 @@
         "_externalTranscript": {
           "type": "boolean",
           "required": false,
-          "default": false,
+          "default": true,
           "title": "Show Link",
           "inputType": {
             "type": "Boolean",
@@ -154,7 +154,7 @@
         "inlineTranscriptButton": {
           "type": "string",
           "required": false,
-          "default": "",
+          "default": "View transcript",
           "title": "Inline Open Button",
           "inputType": "Text",
           "validators": [],
@@ -163,7 +163,7 @@
         "inlineTranscriptCloseButton": {
           "type": "string",
           "required": false,
-          "default": "",
+          "default": "Close",
           "title": "Inline Close Button",
           "inputType": "Text",
           "validators": [],
@@ -182,7 +182,7 @@
         "transcriptLinkButton": {
           "type": "string",
           "required": false,
-          "default": "",
+          "default": "Download",
           "title": "Link Open Button",
           "inputType": "Text",
           "validators": [],
