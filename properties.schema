@@ -7,7 +7,7 @@
     "ariaRegion": {
       "type": "string",
       "required": true,
-      "default": "This is a media component which plays a video. Select the play / pause button to watch or listen.",
+      "default": "This is a media player component. Select the play / pause button to watch or listen.",
       "inputType": "Text",
       "validators": [],
       "translatable": true
@@ -45,7 +45,7 @@
       "inputType": "Text",
       "validators": [],
       "title": "Video Id",
-      "help": "",
+      "help": "Paste the ID from Brightcove into here.",
       "translatable": false
     },
     "_accountId": {
@@ -56,6 +56,7 @@
       "validators": [],
       "title": "Account Id",
       "help": "",
+      "help": "Paste the ID from Brightcove into here.",
       "translatable": false
     },
     "_videoPlayer": {
@@ -65,21 +66,51 @@
       "inputType": "Text",
       "validators": [],
       "title": "Video Player",
-      "help": "Choose the video player you wish to use. Leave blank for default.",
+      "help": "Add the name of the player here.",
       "translatable": false
     },
     "_setCompletionOn": {
       "type": "string",
       "required": true,
       "enum": ["play", "ended"],
-      "default": "ended",
-      "title": "Set completion of Video on",
+      "default": "play",
+      "title": "Completion trigger",
       "inputType": {
         "type": "Select",
         "options": ["play", "ended"]
       },
-      "validators": ["required"],
-      "help": "This tells Adapt when to set this video to complete"
+      "help": "Defines what media event should trigger completion of this component."
+    },
+    "_audioOnly": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "title": "Audio only",
+      "inputType": {
+        "type": "Boolean",
+        "options": [true, false]
+      },
+      "validators": []
+    },
+    "_posterImage": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Audio poster image",
+      "inputType": "Asset:image",
+      "validators": [],
+      "help": "Select a poster image to go with audio. Leave blank for minimalist player."
+    },
+    "_preventControlBarHide": {
+      "type": "boolean",
+      "required": false,
+      "default": "default",
+      "title": "Prevent Control Bar hiding",
+      "inputType": {
+        "type": "Boolean",
+        "options": ["default", "show", "hide"]
+      },
+      "help": "Defaults to show for audio and hide for video."
     },
     "_transcript": {
       "type": "object",
@@ -90,13 +121,13 @@
           "type": "boolean",
           "required": false,
           "default": true,
-          "title": "Set Completion",
+          "title": "Trigger completion?",
           "inputType": {
             "type": "Boolean",
             "options": [true, false]
           },
           "validators": [],
-          "help": "This tells Adapt to set this video to complete when the inline transcript is shown"
+          "help": "Set to 'true' to have this component mark as completed when the inline transcript is shown."
         },
         "_inlineTranscript": {
           "type": "boolean",

@@ -50,8 +50,31 @@ define([
             e.attr('data-video-id', this.model.get("_videoId"));
             e.attr('data-account', this.model.get("_accountId"));
             var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
+            var audioPlayer = this.model.get("_audioOnly") === undefined ? false : this.model.get("_audioOnly");
+
+            var preventControlBarHide;
+            if(this.model.get("_preventControlBarHide") === "hide") {
+              preventControlBarHide = false;
+            } else if (this.model.get("_preventControlBarHide") === "show") {
+              preventControlBarHide = true;
+            } else {
+              preventControlBarHide = audioPlayer;
+            }
+
             e.attr('data-player', player);
             bc(eID);
+            console.log(this.model.get("_posterImage"));
+            if(audioPlayer) {
+              this.$('.brightcove-video-holder').addClass('audio-player');
+              this.$('.video-js').addClass('vjs-audio');
+              if(this.model.get("_posterImage").length > 0){ // poster version of audio player
+                console.log('has poster');
+                this.$('.vjs-poster').removeClass('.vjs-hidden').css({"background-image":"url("+ this.model.get("_posterImage") +")", "display":"block"})
+              } else { // minimal version of audio player
+                console.log('minimal');
+                this.$('.audio-player').addClass('minimal-audio-only');
+              }
+            }
 
             var context = this;
             var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
@@ -62,7 +85,10 @@ define([
                         context.setCompletionStatus();
                 });
 
-                this.on('pause', function() {});
+                this.on('userinactive', function(){
+                  if(preventControlBarHide)
+                  context.$('.video-js').removeClass('vjs-user-inactive').addClass('vjs-user-active');
+                });
 
                 this.on('ended', function() {
                     if (completionOn === 'ended')
