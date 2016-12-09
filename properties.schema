@@ -92,13 +92,13 @@
     "_preventControlBarHide": {
       "type": "boolean",
       "required": false,
-      "enum": [false, true],
+      "default": "default",
       "title": "Prevent Control Bar hiding",
       "inputType": {
         "type": "Boolean",
-        "options": [false, true]
+        "options": ["default", "show", "hide"]
       },
-      "help": "Defaults to true for audio and false for video."
+      "help": "Defaults to show for audio and hide for video."
     },
     "_transcript": {
       "type": "object",

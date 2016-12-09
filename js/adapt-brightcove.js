@@ -51,7 +51,15 @@ define([
             e.attr('data-account', 4629028765001); // hard coded for King's College but we can make this an option if we open source this.
             var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
             var audioPlayer = this.model.get("_audioOnly") === undefined ? false : this.model.get("_audioOnly");
-            var preventControlBarHide = this.model.get("_preventControlBarHide") === undefined ? audioPlayer : this.model.get("_preventControlBarHide");
+
+            var preventControlBarHide;
+            if(this.model.get("_preventControlBarHide") === "hide") {
+              preventControlBarHide = false;
+            } else if (this.model.get("_preventControlBarHide") === "show") {
+              preventControlBarHide = true;
+            } else {
+              preventControlBarHide = audioPlayer;
+            }
 
             e.attr('data-player', player);
             bc(eID);
