@@ -50,8 +50,24 @@ define([
             e.attr('data-video-id', this.model.get("_videoId"));
             e.attr('data-account', 4629028765001); // hard coded for King's College but we can make this an option if we open source this.
             var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
+            var audioPlayer = this.model.get("_audioOnly") === undefined ? false : this.model.get("_audioOnly");
+
             e.attr('data-player', player);
             bc(eID);
+            console.log(this.model.get("_posterImage"));
+            if(audioPlayer) {
+              this.$('.brightcove-video-holder').addClass('audio-player');
+              this.$('.video-js').addClass('vjs-audio');
+              if(this.model.get("_posterImage").length > 0){ // poster version of audio player
+                console.log('has poster');
+                this.$('.vjs-poster').removeClass('.vjs-hidden').css({"background-image":"url("+ this.model.get("_posterImage") +")", "display":"block"})
+              } else { // minimal version of audio player
+                console.log('minimal');
+                this.$('.audio-player').addClass('minimal-audio-only');
+              }
+            }
+
+
 
             var context = this;
             var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
