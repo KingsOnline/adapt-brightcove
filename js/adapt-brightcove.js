@@ -51,6 +51,7 @@ define([
             e.attr('data-account', 4629028765001); // hard coded for King's College but we can make this an option if we open source this.
             var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
             var audioPlayer = this.model.get("_audioOnly") === undefined ? false : this.model.get("_audioOnly");
+            var preventControlBarHide = this.model.get("_preventControlBarHide") === undefined ? audioPlayer : this.model.get("_preventControlBarHide");
 
             e.attr('data-player', player);
             bc(eID);
@@ -67,8 +68,6 @@ define([
               }
             }
 
-
-
             var context = this;
             var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
             var myPlayer = videojs(eID, {}, function() {
@@ -78,7 +77,10 @@ define([
                         context.setCompletionStatus();
                 });
 
-                this.on('pause', function() {});
+                this.on('userinactive', function(){
+                  if(preventControlBarHide)
+                  context.$('.video-js').removeClass('vjs-user-inactive').addClass('vjs-user-active');
+                });
 
                 this.on('ended', function() {
                     if (completionOn === 'ended')

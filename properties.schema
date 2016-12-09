@@ -71,6 +71,36 @@
       "validators": ["required"],
       "help": "This tells Adapt when to set this video to complete"
     },
+    "_audioOnly": {
+      "type": "boolean",
+      "required": false,
+      "default": false,
+      "title": "Audio only",
+      "inputType": {
+        "type": "Boolean",
+        "options": [true, false]
+      },
+      "validators": []
+    },
+    "_posterImage": {
+      "type": "string",
+      "required": false,
+      "default": "",
+      "title": "Audio poster image",
+      "inputType": "Asset:image",
+      "validators": [],
+      "help": "Select a poster image to go with audio. Leave blank for minimalist player."
+    },
+    "_preventControlBarHide": {
+      "type": "boolean",
+      "required": false,
+      "title": "Prevent Control Bar from hiding",
+      "inputType": {
+        "type": "Boolean",
+        "options": [true, false]
+      },
+      "help": "Defaults to true for audio and false for video."
+    },
     "_transcript": {
       "type": "object",
       "required": false,
