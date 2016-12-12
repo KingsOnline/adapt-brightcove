@@ -63,15 +63,12 @@ define([
 
             e.attr('data-player', player);
             bc(eID);
-            console.log(this.model.get("_posterImage"));
             if(audioPlayer) {
               this.$('.brightcove-video-holder').addClass('audio-player');
               this.$('.video-js').addClass('vjs-audio');
               if(this.model.get("_posterImage").length > 0){ // poster version of audio player
-                console.log('has poster');
                 this.$('.vjs-poster').removeClass('.vjs-hidden').css({"background-image":"url("+ this.model.get("_posterImage") +")", "display":"block"})
               } else { // minimal version of audio player
-                console.log('minimal');
                 this.$('.audio-player').addClass('minimal-audio-only');
               }
             }
