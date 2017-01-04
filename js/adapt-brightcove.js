@@ -33,24 +33,25 @@ define([
             }
         },
 
-        postRender: function() {
+        preRender: function() {
             this.setReadyStatus();
-
-            var e = this.$('.brightcove-video-holder :first-child');
-            var eid = this.assignID(e);
             var account = parseInt(this.model.get("_accountId"));
             console.log(typeof account);
             var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
             console.log(player);
             var script = "https://players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
             console.log(script);
-            $("head").append('<script>$.getScript("' + script + '", function() { require(["bc"], function(bc) { window.bc = bc; console.log(window.bc);}); });</script>');
-            var context = this;
-            setTimeout(function() {
-                context.createPlayer(e, eid);
-            }, 1000); // time out for the player to get instantied.
+            $("head").append('<script>$.getScript("' + script + '", function() { require(["bc"], function(bc) { window.bc = bc; console.log(window.bc);}); }).done(function( textStatus ) { console.log( "loaded" );});</script>');
 
+        },
 
+        postRender: function() {
+          var e = this.$('.brightcove-video-holder :first-child');
+          var eid = this.assignID(e);
+          var context = this;
+          setTimeout(function() {
+              context.createPlayer(e, eid);
+          }, 1000); // time out for the player to get instantied.
         },
 
         assignID: function() {
@@ -59,35 +60,45 @@ define([
             return id;
         },
 
-        createPlayer: function(e, eID) {
-            e.attr('data-video-id', this.model.get("_videoId"));
-            e.attr('data-account', this.model.get("_accountId"));
-            //var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
-            var audioPlayer = this.model.get("_audioOnly") === undefined ? false : this.model.get("_audioOnly");
-            var preventControlBarHide;
+        setPreventControlBarHide: function(audioPlayer) {
             if (this.model.get("_preventControlBarHide") === "hide") {
-                preventControlBarHide = false;
+                return false;
             } else if (this.model.get("_preventControlBarHide") === "show") {
-                preventControlBarHide = true;
+                return true;
             } else {
-                preventControlBarHide = audioPlayer;
+                return audioPlayer;
             }
+        },
 
-            //e.attr('data-player', player);
+        setAudioPlayer: function() {
+          this.$('.brightcove-video-holder').addClass('audio-player');
+          this.$('.video-js').addClass('vjs-audio');
+          if (this.model.get("_posterImage").length > 0) { // poster version of audio player
+              this.$('.vjs-poster').removeClass('.vjs-hidden').css({
+                  "background-image": "url(" + this.model.get("_posterImage") + ")",
+                  "display": "block"
+              })
+          } else { // minimal version of audio player
+              this.$('.audio-player').addClass('minimal-audio-only');
+          }
+        },
+
+        createPlayer: function(e, eID) {
+            var audioPlayer = this.model.get("_audioOnly") === undefined ? false : this.model.get("_audioOnly");
+            if (audioPlayer) this.setAudioPlayer();
+            var preventControlBarHide = this.setPreventControlBarHide(audioPlayer);
+
+
             console.log(bc);
+            var vTag = document.getElementById(eID);
+            console.log(vTag);
+            vTag.setAttribute('data-account', this.model.get("_accountId"));
+            console.log(this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer"));
+            vTag.setAttribute('data-player', this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer"));
+            vTag.setAttribute('data-video-id', this.model.get("_videoId"));
+
             bc(eID);
-            if (audioPlayer) {
-                this.$('.brightcove-video-holder').addClass('audio-player');
-                this.$('.video-js').addClass('vjs-audio');
-                if (this.model.get("_posterImage").length > 0) { // poster version of audio player
-                    this.$('.vjs-poster').removeClass('.vjs-hidden').css({
-                        "background-image": "url(" + this.model.get("_posterImage") + ")",
-                        "display": "block"
-                    })
-                } else { // minimal version of audio player
-                    this.$('.audio-player').addClass('minimal-audio-only');
-                }
-            }
+
 
             var context = this;
             var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
