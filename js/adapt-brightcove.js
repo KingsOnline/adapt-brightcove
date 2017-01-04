@@ -34,6 +34,8 @@ define([
         },
 
         postRender: function() {
+            this.setReadyStatus();
+
             var e = this.$('.brightcove-video-holder :first-child');
             var eid = this.assignID(e);
             var account = parseInt(this.model.get("_accountId"));
@@ -42,11 +44,13 @@ define([
             console.log(player);
             var script = "https://players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
             console.log(script);
-            $("head").append('<script>$.getScript("'+script+'", function() { require(["bc"], function(bc) { window.bc = bc; }); });</script>');
+            $("head").append('<script>$.getScript("' + script + '", function() { require(["bc"], function(bc) { window.bc = bc; console.log(window.bc);}); });</script>');
             var context = this;
-            setTimeout(function() { context.createPlayer(e, eid); }, 2000);
+            setTimeout(function() {
+                context.createPlayer(e, eid);
+            }, 1000); // time out for the player to get instantied.
 
-            this.setReadyStatus();
+
         },
 
         assignID: function() {
@@ -58,7 +62,7 @@ define([
         createPlayer: function(e, eID) {
             e.attr('data-video-id', this.model.get("_videoId"));
             e.attr('data-account', this.model.get("_accountId"));
-            var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
+            //var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
             var audioPlayer = this.model.get("_audioOnly") === undefined ? false : this.model.get("_audioOnly");
             var preventControlBarHide;
             if (this.model.get("_preventControlBarHide") === "hide") {
@@ -69,7 +73,8 @@ define([
                 preventControlBarHide = audioPlayer;
             }
 
-            e.attr('data-player', player);
+            //e.attr('data-player', player);
+            console.log(bc);
             bc(eID);
             if (audioPlayer) {
                 this.$('.brightcove-video-holder').addClass('audio-player');
@@ -86,8 +91,10 @@ define([
 
             var context = this;
             var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
-            var myPlayer = videojs(eID, {}, function() {
 
+            var myPlayer = videojs(eID).on('loadedmetadata', function() {
+                console.log(this.mediainfo);
+                console.log(this);
                 this.on('play', function() {
                     if (completionOn === 'play')
                         context.setCompletionStatus();
