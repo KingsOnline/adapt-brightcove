@@ -34,7 +34,7 @@ define([
         },
 
         preRender: function() {
-            this.setReadyStatus();
+
             var account = parseInt(this.model.get("_accountId"));
             console.log(typeof account);
             var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
@@ -42,16 +42,16 @@ define([
             var script = "https://players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
             console.log(script);
             $("head").append('<script>$.getScript("' + script + '", function() { require(["bc"], function(bc) { window.bc = bc; console.log(window.bc);}); }).done(function( textStatus ) { console.log( "loaded" );});</script>');
-
+            this.setReadyStatus();
         },
 
         postRender: function() {
-          var e = this.$('.brightcove-video-holder :first-child');
-          var eid = this.assignID(e);
-          var context = this;
-          setTimeout(function() {
-              context.createPlayer(e, eid);
-          }, 1000); // time out for the player to get instantied.
+            var e = this.$('.brightcove-video-holder :first-child');
+            var eid = this.assignID(e);
+            var context = this;
+            setTimeout(function() {
+                context.createPlayer(e, eid);
+            }, 1000); // time out for the player to get instantied.
         },
 
         assignID: function() {
@@ -71,35 +71,35 @@ define([
         },
 
         setAudioPlayer: function() {
-          this.$('.brightcove-video-holder').addClass('audio-player');
-          this.$('.video-js').addClass('vjs-audio');
-          if (this.model.get("_posterImage").length > 0) { // poster version of audio player
-              this.$('.vjs-poster').removeClass('.vjs-hidden').css({
-                  "background-image": "url(" + this.model.get("_posterImage") + ")",
-                  "display": "block"
-              })
-          } else { // minimal version of audio player
-              this.$('.audio-player').addClass('minimal-audio-only');
-          }
+            this.$('.brightcove-video-holder').addClass('audio-player');
+            this.$('.video-js').addClass('vjs-audio');
+            if (this.model.get("_posterImage").length > 0) { // poster version of audio player
+                this.$('.vjs-poster').removeClass('.vjs-hidden').css({
+                    "background-image": "url(" + this.model.get("_posterImage") + ")",
+                    "display": "block"
+                })
+            } else { // minimal version of audio player
+                this.$('.audio-player').addClass('minimal-audio-only');
+            }
+        },
+
+        setVideoData: function(eID) {
+            var vTag = document.getElementById(eID);
+            vTag.setAttribute('data-account', this.model.get("_accountId"));
+            vTag.setAttribute('data-player', this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer"));
+            vTag.setAttribute('data-video-id', this.model.get("_videoId"));
         },
 
         createPlayer: function(e, eID) {
             var audioPlayer = this.model.get("_audioOnly") === undefined ? false : this.model.get("_audioOnly");
             if (audioPlayer) this.setAudioPlayer();
             var preventControlBarHide = this.setPreventControlBarHide(audioPlayer);
-
-
-            console.log(bc);
-            var vTag = document.getElementById(eID);
-            console.log(vTag);
-            vTag.setAttribute('data-account', this.model.get("_accountId"));
-            console.log(this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer"));
-            vTag.setAttribute('data-player', this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer"));
-            vTag.setAttribute('data-video-id', this.model.get("_videoId"));
-
+            this.setVideoData(eID);
             bc(eID);
+            this.videoRuntime(eID,preventControlBarHide);
+        },
 
-
+        videoRuntime: function(eID, preventControlBarHide) {
             var context = this;
             var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
 
@@ -122,11 +122,6 @@ define([
                 });
             });
         }
-    });
-
-    Adapt.on("app:dataReady", function() {
-        console.log(Adapt.components) //is a collection of component models
-
     });
 
     Adapt.register("brightcove", Brightcove);
