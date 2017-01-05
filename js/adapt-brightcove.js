@@ -36,12 +36,9 @@ define([
         preRender: function() {
 
             var account = parseInt(this.model.get("_accountId"));
-            console.log(typeof account);
             var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
-            console.log(player);
             var script = "https://players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
-            console.log(script);
-            $("head").append('<script>$.getScript("' + script + '", function() { require(["bc"], function(bc) { window.bc = bc; console.log(window.bc);}); }).done(function( textStatus ) { console.log( "loaded" );});</script>');
+            $("head").append('<script>$.getScript("' + script + '", function() { require(["bc"], function(bc) { window.bc = bc;}); })</script>');
             this.setReadyStatus();
         },
 
@@ -79,8 +76,6 @@ define([
                     "display": "block"
                 })
             } else { // minimal version of audio player
-                console.log('otherplayer');
-                console.log(this.$('.vjs-tech'));
                 this.$('.audio-player').addClass('minimal-audio-only');
             }
         },
