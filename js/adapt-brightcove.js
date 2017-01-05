@@ -93,13 +93,10 @@ define([
         },
 
         createPlayer: function(e, eID) {
-            var audioPlayer = this.model.get("_audioPlayer")._isEnabled === undefined ? false : this.model.get("_audioPlayer")._isEnabled;
-            console.log(this.model.get("_audioPlayer")._isEnabled);
-            console.log(audioPlayer);
-
             this.setVideoData(eID);
             bc(eID);
 
+            var audioPlayer = this.model.get("_audioPlayer")._isEnabled === undefined ? false : this.model.get("_audioPlayer")._isEnabled;
             if (audioPlayer) this.setAudioPlayer();
             var preventControlBarHide = this.setPreventControlBarHide(audioPlayer);
 
@@ -111,8 +108,6 @@ define([
             var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
 
             var myPlayer = videojs(eID).on('loadedmetadata', function() {
-                console.log(this.mediainfo);
-                console.log(this);
                 this.on('play', function() {
                     if (completionOn === 'play')
                         context.setCompletionStatus();
