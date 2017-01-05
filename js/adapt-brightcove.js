@@ -73,12 +73,14 @@ define([
         setAudioPlayer: function() {
             this.$('.brightcove-video-holder').addClass('audio-player');
             this.$('.video-js').addClass('vjs-audio');
-            if (this.model.get("_posterImage").length > 0) { // poster version of audio player
+            if (this.model.get("_audioPlayer")._posterImage.length > 0) { // poster version of audio player
                 this.$('.vjs-poster').removeClass('.vjs-hidden').css({
-                    "background-image": "url(" + this.model.get("_posterImage") + ")",
+                    "background-image": "url(" + this.model.get("_audioPlayer")._posterImage + ")",
                     "display": "block"
                 })
             } else { // minimal version of audio player
+                console.log('otherplayer');
+                console.log(this.$('.vjs-tech'));
                 this.$('.audio-player').addClass('minimal-audio-only');
             }
         },
@@ -91,12 +93,17 @@ define([
         },
 
         createPlayer: function(e, eID) {
-            var audioPlayer = this.model.get("_audioOnly") === undefined ? false : this.model.get("_audioOnly");
-            if (audioPlayer) this.setAudioPlayer();
-            var preventControlBarHide = this.setPreventControlBarHide(audioPlayer);
+            var audioPlayer = this.model.get("_audioPlayer")._isEnabled === undefined ? false : this.model.get("_audioPlayer")._isEnabled;
+            console.log(this.model.get("_audioPlayer")._isEnabled);
+            console.log(audioPlayer);
+
             this.setVideoData(eID);
             bc(eID);
-            this.videoRuntime(eID,preventControlBarHide);
+
+            if (audioPlayer) this.setAudioPlayer();
+            var preventControlBarHide = this.setPreventControlBarHide(audioPlayer);
+
+            this.videoRuntime(eID, preventControlBarHide);
         },
 
         videoRuntime: function(eID, preventControlBarHide) {
