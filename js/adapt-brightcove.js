@@ -48,7 +48,7 @@ define([
             var context = this;
             setTimeout(function() {
                 context.createPlayer(e, eid);
-            }, 1000); // time out for the player to get instantied.
+            }, 2500); // time out for the player to get instantied.
         },
 
         assignID: function() {
@@ -88,6 +88,7 @@ define([
         },
 
         createPlayer: function(e, eID) {
+            $('.brightcove-loading-text').remove();
             this.setVideoData(eID);
             bc(eID);
 
