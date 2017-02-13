@@ -41,7 +41,7 @@ define([
             console.log(player);
             var script = "https://players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
             console.log(script);
-            $("head").append('<script>$.getScript("' + script + '", function() { require(["bc"], function(bc) { window.bc = bc; console.log(window.bc);}); }).done(function( textStatus ) { console.log( "loaded" );});</script>');
+            $("head").append('<script>$.getScript("' + script + '", function() { require(["bc"], function(bc) { window.bc = bc;}); });</script>');
             this.setReadyStatus();
         },
 
@@ -51,7 +51,7 @@ define([
             var context = this;
             setTimeout(function() {
                 context.createPlayer(e, eid);
-            }, 1000); // time out for the player to get instantied.
+            }, 2500); // time out for the player to get instantied.
         },
 
         assignID: function() {
