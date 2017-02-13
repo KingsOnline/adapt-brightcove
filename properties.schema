@@ -51,7 +51,7 @@
     "_accountId": {
       "type": "string",
       "required": true,
-      "default": "",
+      "default": "4629028765001",
       "inputType": "Text",
       "validators": [],
       "title": "Account Id",
