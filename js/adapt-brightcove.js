@@ -33,41 +33,30 @@ define([
             }
         },
 
-        preRender: function() {
-
-            var account = parseInt(this.model.get("_accountId"));
-            var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
-            var script = "https://players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
-            //  $("head").append('<script>$.getScript("' + script + '", function() { require(["bc"], function(bc) { window.bc = bc;}); });</script>');
-
-            var s = document.createElement('script');
-            s.src = "//players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
-            document.body.appendChild(s);
-            console.log('ss');
-            var context = this;
-            s.onload = function() {
-                require(["bc"], function(bc) {
-                    window.bc = bc;
-                    console.log(videojs);
-                    context.setup(context);
-                });
-            };
-
-            this.setReadyStatus();
-        },
-
         postRender: function() {
-
+          var account = parseInt(this.model.get("_accountId"));
+          var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
+          var script = "https://players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
+          //  $("head").append('<script>$.getScript("' + script + '", function() { require(["bc"], function(bc) { window.bc = bc;}); });</script>');
+          var s = document.createElement('script');
+          s.src = "//players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
+          document.body.appendChild(s);
+          console.log('ss');
+          var context = this;
+          s.onload = function() {
+              require(["bc"], function(bc) {
+                  window.bc = bc;
+                  console.log(videojs);
+                  context.setup();
+              });
+          };
+          this.setReadyStatus();
         },
 
-        setup: function(context) {
-            console.log(this);
+        setup: function() {
             var e = this.$('.brightcove-video-holder :first-child');
             var eid = this.assignID(e);
-            //    setTimeout(function() {
             this.createPlayer(e, eid);
-            context.videoRuntime(eid, false)
-                //    }, 2500); // time out for the player to get instantied.
         },
 
         assignID: function() {
@@ -93,7 +82,7 @@ define([
                 this.$('.vjs-poster').removeClass('.vjs-hidden').css({
                     "background-image": "url(" + this.model.get("_posterImage") + ")",
                     "display": "block"
-                })
+                });
             } else { // minimal version of audio player
                 this.$('.audio-player').addClass('minimal-audio-only');
             }
