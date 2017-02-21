@@ -48,6 +48,8 @@ define([
             s.onload = function() {
                 require(["bc"], function(bc) {
                     window.bc = bc;
+                    console.log(videojs);
+                    context.setup(context);
                 });
             };
 
@@ -55,18 +57,17 @@ define([
         },
 
         postRender: function() {
-            this.setup();
+
         },
 
-        setup: function() {
+        setup: function(context) {
             console.log(this);
             var e = this.$('.brightcove-video-holder :first-child');
             var eid = this.assignID(e);
-            var context = this;
-            //  setTimeout(function() {
+            //    setTimeout(function() {
             this.createPlayer(e, eid);
-            that.videoRuntime(eID, false)
-                //}, 2500); // time out for the player to get instantied.
+            context.videoRuntime(eid, false)
+                //    }, 2500); // time out for the player to get instantied.
         },
 
         assignID: function() {
@@ -110,7 +111,7 @@ define([
             if (audioPlayer) this.setAudioPlayer();
             var preventControlBarHide = this.setPreventControlBarHide(audioPlayer);
             this.setVideoData(eID);
-            //bc(eID);
+            bc(eID);
             this.videoRuntime(eID, preventControlBarHide);
         },
 
