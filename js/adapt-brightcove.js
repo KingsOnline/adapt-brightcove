@@ -41,12 +41,10 @@ define([
           var s = document.createElement('script');
           s.src = "//players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
           document.body.appendChild(s);
-          console.log('ss');
           var context = this;
           s.onload = function() {
               require(["bc"], function(bc) {
                   window.bc = bc;
-                  console.log(videojs);
                   context.setup();
               });
           };
@@ -109,8 +107,6 @@ define([
             var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
 
             var myPlayer = videojs(eID).on('loadedmetadata', function() {
-                console.log(this.mediainfo);
-                console.log(this);
                 this.on('play', function() {
                     if (completionOn === 'play')
                         context.setCompletionStatus();
