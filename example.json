@@ -12,6 +12,7 @@
   "_accountId": "4629028765001",
   "_videoId": "5236028089001",
   "_videoPlayer": "default",
+  "_setCompletionOn": "play | ended",
   "_audioOnly": false,
   "_posterImage": "",
   "_preventControlBarHide": "default",
