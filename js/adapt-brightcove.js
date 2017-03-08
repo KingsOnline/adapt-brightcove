@@ -55,6 +55,7 @@ define([
             var e = this.$('.brightcove-video-holder :first-child');
             var eid = this.assignID(e);
             this.createPlayer(e, eid);
+
         },
 
         assignID: function() {
@@ -76,9 +77,9 @@ define([
         setAudioPlayer: function() {
             this.$('.brightcove-video-holder').addClass('audio-player');
             this.$('.video-js').addClass('vjs-audio');
-            if (this.model.get("_posterImage").length > 0) { // poster version of audio player
+            if (this.model.get("_audioPlayer")._posterImage.length > 0) { // poster version of audio player
                 this.$('.vjs-poster').removeClass('.vjs-hidden').css({
-                    "background-image": "url(" + this.model.get("_posterImage") + ")",
+                    "background-image": "url(" + this.model.get("_audioPlayer")._posterImage + ")",
                     "display": "block"
                 });
             } else { // minimal version of audio player
@@ -94,9 +95,7 @@ define([
         },
 
         createPlayer: function(e, eID) {
-            var audioPlayer = this.model.get("_audioOnly") === undefined ? false : this.model.get("_audioOnly");
-            if (audioPlayer) this.setAudioPlayer();
-            var preventControlBarHide = this.setPreventControlBarHide(audioPlayer);
+            $('.brightcove-loading-text').remove();
             this.setVideoData(eID);
             bc(eID);
             this.videoRuntime(eID, preventControlBarHide);

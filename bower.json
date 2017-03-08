@@ -1,7 +1,7 @@
 {
   "name": "adapt-brightcove",
   "repository": "git://github.com/kingsonline/adapt-brightcove.git",
-  "version": "1.2.0",
+  "version": "1.3.4",
   "framework": "^2.0.0",
   "homepage": "https://github.com/kingsonline/adapt-brightcove",
   "authors": [

@@ -81,25 +81,32 @@
       },
       "help": "Defines what media event should trigger completion of this component."
     },
-    "_audioOnly": {
-      "type": "boolean",
+    "_audioPlayer": {
+      "type": "object",
       "required": false,
-      "default": false,
-      "title": "Audio only",
-      "inputType": {
-        "type": "Boolean",
-        "options": [true, false]
-      },
-      "validators": []
-    },
-    "_posterImage": {
-      "type": "string",
-      "required": false,
-      "default": "",
-      "title": "Audio poster image",
-      "inputType": "Asset:image",
-      "validators": [],
-      "help": "Select a poster image to go with audio. Leave blank for minimalist player."
+      "title": "Audio only player",
+      "properties": {
+        "_isEnabled": {
+          "type": "boolean",
+          "required": false,
+          "default": false,
+          "title": "Audio only",
+          "inputType": {
+            "type": "Boolean",
+            "options": [true, false]
+          },
+          "validators": []
+        },
+        "_posterImage": {
+          "type": "string",
+          "required": false,
+          "default": "",
+          "title": "Audio poster image",
+          "inputType": "Asset:image",
+          "validators": [],
+          "help": "Select a poster image to go with audio. Leave blank for minimalist player."
+        }
+      }
     },
     "_preventControlBarHide": {
       "type": "boolean",
