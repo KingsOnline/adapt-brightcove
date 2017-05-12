@@ -1,104 +1,110 @@
 .brightcove-component {
-    &.component-left,
-    &.component-right {
-        .brightcove-video-holder {
-            height: 280px;
-            width: 100%;
-            @media (max-width: @device-width-medium) {
-                height: 400px;
-            }
-            @media (max-width: @device-width-small) {
-                height: 300px;
-            }
-        }
+  &.component-left,
+  &.component-right {
+    .brightcove-video-holder {
+      height: 280px;
+      width: 100%;
+      @media (max-width: @device-width-medium) {
+        height: 400px;
+      }
+      @media (max-width: @device-width-small) {
+        height: 300px;
+      }
+    }
+  }
+
+  &.component-full {
+    .brightcove-video-holder {
+      height: 500px;
+      width: 100%;
+      @media (max-width: @device-width-medium) {
+        height: 400px;
+      }
+      @media (max-width: @device-width-small) {
+        height: 300px;
+      }
+    }
+  }
+
+  .audio-player {
+    .vjs-fullscreen-control {
+      display: none !important;
     }
 
-    &.component-full {
-        .brightcove-video-holder {
-            height: 500px;
-            width: 100%;
-            @media (max-width: @device-width-medium) {
-                height: 400px;
-            }
-            @media (max-width: @device-width-small) {
-                height: 300px;
-            }
-        }
-    }
+    &.minimal-audio-only {
+      height: 30px !important;
 
-    .audio-player {
-        .vjs-fullscreen-control {
-            display: none !important;
-        }
+      .vjs-big-play-button {
+        display: none !important;
+      }
 
-        &.minimal-audio-only {
-            height: 30px !important;
-
-            .vjs-big-play-button {
-                display: none !important;
-            }
-
-            .vjs-audio-button {
-                display: none;
-            }
-
-            .vjs-poster {
-                background: none !important;
-            }
-
-            .vjs-tech {
-                opacity: 0 !important;
-            }
-        }
-    }
-
-    .video-js {
-        height: 100%;
-        width: 100%;
-    }
-
-    .vjs-volume-menu-button {
-        @media (max-width: @device-width-small) {
-            display: none !important;
-        }
-    }
-
-    .vjs-captions-button {
-        @media (max-width: 340px) {
-            display: none !important;
-        }
-    }
-
-    .media-transcript {
-        padding: @button-padding;
-        display: block;
-        color: @button-text-color;
-        background-color: @button-color;
-        text-decoration: none;
-
-        &:hover {
-            color: @button-text-color-hover;
-            background-color: @button-color-hover;
-        }
-    }
-
-    .media-inline-transcript-body-container {
-        margin-top: 10px;
+      .vjs-audio-button {
         display: none;
-    }
+      }
 
-    .media-inline-transcript-body {
-        padding: @component-padding;
-        background: @transparency;
-    }
+      .vjs-poster {
+        background: none !important;
+      }
 
-    .media-transcript-button-container {
-        padding: 1px;
+      .vjs-tech {
+        opacity: 0 !important;
+      }
     }
+  }
 
-    .media-external-transcript-button,
-    .media-inline-transcript-button {
-        width: 100%;
-        display: block;
+  .video-js {
+    height: 100%;
+    width: 100%;
+  }
+
+  .vjs-volume-menu-button {
+    @media (max-width: @device-width-small) {
+      display: none !important;
     }
+  }
+
+  .vjs-captions-button {
+    @media (max-width: 340px) {
+      display: none !important;
+    }
+  }
+
+  .media-transcript {
+    padding: @button-padding;
+    display: block;
+    color: @button-text-color;
+    background-color: @button-color;
+    text-decoration: none;
+
+    &:hover {
+      color: @button-text-color-hover;
+      background-color: @button-color-hover;
+    }
+  }
+
+  .media-inline-transcript-body-container {
+    margin-top: 10px;
+    display: none;
+  }
+
+  .media-inline-transcript-body {
+    padding: @component-padding;
+    background: @transparency;
+  }
+
+  .media-transcript-button-container {
+    padding: 1px;
+    margin: 5px;
+  }
+
+  .media-external-transcript-button,
+  .media-inline-transcript-button {
+    width: 49%;
+    float: left;
+    display: block;
+  }
+
+  .media-external-transcript-button {
+    float: right;
+  }
 }
