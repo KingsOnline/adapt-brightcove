@@ -83,7 +83,7 @@
   }
 
   .media-inline-transcript-body-container {
-    margin-top: 10px;
+    margin-top: 15px;
     width: 100%;
     display: none;
   }
@@ -94,19 +94,22 @@
   }
 
   .media-transcript-button-container {
-    padding: 1px;
-    margin: 5px 0;
+    margin-top: 5px;
     min-height: 50px;
   }
 
   .media-external-transcript-button,
   .media-inline-transcript-button {
-    width: 49%;
+    width: 100%;
     float: left;
     display: block;
+
+    &.half-width {
+        width: 49%;
+    }
   }
 
-  .media-external-transcript-button {
+  .media-external-transcript-button.half-width {
     float: right;
   }
 }
