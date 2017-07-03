@@ -38,7 +38,8 @@ Login to your Brightcove account to retrieve your IDs.
 
 ## Limitations
 
-Multiple _audioPlayer used within the same course don't work. Just stick to one.
+*   Multiple _audioPlayer used within the same course don't work. Just stick to one.
+*   Unlike the Media component, if you have multiple instances of this component on a page. Playing one won't pause another already in play.
 
 ---
 
