@@ -52,6 +52,7 @@ define([
       s.onerror = function() {
         console.log('cannot load Brightcove');
         context.setReadyStatus();
+        context.setCompletionStatus();
       };
     },
 
