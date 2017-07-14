@@ -49,6 +49,10 @@ define([
           context.setReadyStatus();
         });
       };
+      s.onerror = function() {
+        console.log('cannot load Brightcove');
+        context.setReadyStatus();
+      };
     },
 
     setup: function() {
