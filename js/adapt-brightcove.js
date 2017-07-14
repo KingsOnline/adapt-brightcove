@@ -46,9 +46,9 @@ define([
         require(["bc"], function(bc) {
           window.bc = bc;
           context.setup();
+          context.setReadyStatus();
         });
       };
-      this.setReadyStatus();
     },
 
     setup: function() {
