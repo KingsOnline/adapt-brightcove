@@ -39,21 +39,15 @@ define([
       var script = "https://players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
       var s = document.createElement('script');
       s.src = script;
-      var e = document.getElementsByClassName(this.model.get("_id"));
-      e[0].appendChild(s);
+      document.body.appendChild(s);
       var context = this;
       s.onload = function() {
-        require(["bc"], function(bc) {
-          window.bc = bc;
-          context.setup();
-          context.setReadyStatus();
-        });
+          require(["bc"], function(bc) {
+              window.bc = bc;
+              context.setup();
+          });
       };
-      s.onerror = function() {
-        console.log('cannot load Brightcove');
-        context.setReadyStatus();
-        context.setCompletionStatus();
-      };
+      this.setReadyStatus();
     },
 
     setup: function() {
