@@ -3,6 +3,33 @@ define([
   "core/js/adapt"
 ], function(ComponentView, Adapt) {
 
+  function waitFor(test, callback) {
+    var intervalHandle = setInterval(function() {
+      if (!test()) return;
+      clearInterval(intervalHandle);
+      callback();
+    }, 250);
+  }
+
+  Adapt.once("app:dataReady", function() {
+    // var courseConfig = Adapt.course.get("_brightcove");
+    var firstComponentModel = Adapt.components.models.filter(function(model) {
+      return model.get("_component") === "brightcove";
+    });
+    firstComponentModel = firstComponentModel[0].attributes;
+    var account = parseInt(firstComponentModel._accountId);
+    var player = firstComponentModel._videoPlayer === undefined ? 'default' : firstComponentModel._videoPlayer;
+    var script = "https://players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
+    var s = document.createElement('script');
+    s.src = script;
+    document.body.appendChild(s);
+    var context = this;
+    s.onload = function() {
+      require(["bc"], function(bc) {
+        window.bc = bc;
+      });
+    };
+  });
 
   var Brightcove = ComponentView.extend({
 
@@ -34,20 +61,13 @@ define([
     },
 
     postRender: function() {
-      var account = parseInt(this.model.get("_accountId"));
-      var player = this.model.get("_videoPlayer") === undefined ? 'default' : this.model.get("_videoPlayer");
-      var script = "https://players.brightcove.net/" + account + "/" + player + "_default/index.min.js";
-      var s = document.createElement('script');
-      s.src = script;
-      document.body.appendChild(s);
       var context = this;
-      s.onload = function() {
-          require(["bc"], function(bc) {
-              window.bc = bc;
-              context.setup();
-          });
-      };
-      this.setReadyStatus();
+      waitFor(function() {
+        return window.bc;
+      }, function() {
+        context.setup();
+        context.setReadyStatus();
+      });
     },
 
     setup: function() {
