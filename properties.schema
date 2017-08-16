@@ -189,8 +189,8 @@
         "transcriptLinkButton": {
           "type": "string",
           "required": false,
-          "default": "Download",
-          "title": "Link Open Button",
+          "default": "Download transcript",
+          "title": "Transcript Download Button",
           "inputType": "Text",
           "validators": [],
           "translatable": true
