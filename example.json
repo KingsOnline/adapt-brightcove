@@ -14,7 +14,7 @@
   "_videoPlayer": "default",
   "_setCompletionOn": "play",
   "_audioPlayer": {
-    "_isEnabled": true,
+    "_isEnabled": false,
     "_posterImage": ""
   },
   "_preventControlBarHide": "default",
