@@ -2,7 +2,7 @@
   {{> component this}}
   {{#if _timestamp._isEnabled}}
     <div class="brightcove-timestamp">
-      <div class="brightcove-timestamp-label">{{_timestamp._label}}:</div>
+      <div class="brightcove-timestamp-label">{{_timestamp.label}}:</div>
       {{#each _timestamp._items}}
         <span class="brightcove-timestamp-item"><a href="#">{{text}}</a></span>
       {{/each}}

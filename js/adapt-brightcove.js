@@ -38,13 +38,6 @@ define([
       "click .brightcove-timestamp-item": "onTimestampClicked"
     },
 
-    onTimestampClicked: function(event) {
-      event.preventDefault();
-      var index = this.$(event.currentTarget).index() - 1;
-      this.model.myPlayer.currentTime(this.model.get('_timestamp')._items[index]._time);
-      this.model.myPlayer.play();
-    },
-
     onToggleInlineTranscript: function(event) {
       if (event) event.preventDefault();
       Adapt.trigger('Brightcove:openTranscript');
@@ -127,6 +120,13 @@ define([
       this.videoRuntime(eID, preventControlBarHide);
     },
 
+    onTimestampClicked: function(event) {
+      event.preventDefault();
+      var index = this.$(event.currentTarget).index() - 1;
+      this.model.myPlayer.currentTime(this.model.get('_timestamp')._items[index]._time);
+      this.model.myPlayer.play();
+    },
+
     videoRuntime: function(eID, preventControlBarHide) {
       var context = this;
       var completionOn = this.model.get("_setCompletionOn") === undefined ? 'play' : this.model.get("_setCompletionOn");
@@ -135,7 +135,9 @@ define([
         this.setAudioPlayer();
       }
 
-      this.model.myPlayer = videojs(eID).on('loadedmetadata', function() {
+      this.model.myPlayer = videojs(eID);
+
+      this.model.myPlayer.on('loadedmetadata', function() {
         this.on('play', function() {
           if (completionOn === 'play')
             context.setCompletionStatus();

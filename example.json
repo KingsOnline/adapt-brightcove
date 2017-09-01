@@ -18,6 +18,22 @@
     "_posterImage": ""
   },
   "_preventControlBarHide": "default",
+  "_timestamp": {
+    "_isEnabled": true,
+    "label": "Timestamps",
+    "_items": [{
+        "_time": 10,
+        "text": "Introduction"
+      },
+      {
+        "_time": 20,
+        "text": "Section 1"
+      }, {
+        "_time": 45,
+        "text": "Section 2"
+      }
+    ]
+  },
   "_transcript": {
     "_setCompletionOnView": true,
     "_inlineTranscript": true,
