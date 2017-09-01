@@ -141,33 +141,33 @@
           "title": "Timestamp label",
           "inputType": "Text",
           "validators": []
-        }
-      },
-      "_items": {
-        "type": "array",
-        "required": false,
-        "title": "Items",
-        "items": {
-          "type": "object",
+        },
+        "_items": {
+          "type": "array",
           "required": false,
-          "properties": {
-            "_time": {
-              "type": "string",
-              "required": true,
-              "inputType": "Number",
-              "title": "Time",
-              "default": "",
-              "validators": ["required"],
-              "help": "Enter in seconds. E.g 80s = 1m20s"
-            },
-            "text": {
-              "type": "string",
-              "required": true,
-              "inputType": "Text",
-              "title": "Timestamp name",
-              "default": "",
-              "validators": ["required"],
-              "help": "The name of the timestamp"
+          "title": "Items",
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "_time": {
+                "type": "string",
+                "required": true,
+                "inputType": "Number",
+                "title": "Time",
+                "default": "",
+                "validators": ["required"],
+                "help": "Enter in seconds. E.g 80s = 1m20s"
+              },
+              "text": {
+                "type": "string",
+                "required": true,
+                "inputType": "Text",
+                "title": "Timestamp name",
+                "default": "",
+                "validators": ["required"],
+                "help": "The name of the timestamp"
+              }
             }
           }
         }
