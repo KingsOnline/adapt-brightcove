@@ -16,6 +16,7 @@ define([
     var firstComponentModel = Adapt.components.models.filter(function(model) {
       return model.get("_component") === "brightcove";
     });
+    if(firstComponentModel.length == 0) return;
     firstComponentModel = firstComponentModel[0].attributes;
     var account = parseInt(firstComponentModel._accountId);
     var player = firstComponentModel._videoPlayer === undefined ? 'default' : firstComponentModel._videoPlayer;
