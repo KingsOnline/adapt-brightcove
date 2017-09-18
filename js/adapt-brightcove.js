@@ -41,7 +41,9 @@ define([
 
     onToggleInlineTranscript: function(event) {
       if (event) event.preventDefault();
-      Adapt.trigger('Brightcove:openTranscript');
+      setTimeout(function() {
+        Adapt.trigger('Brightcove:openTranscript');
+      }, 500);
       var $transcriptBodyContainer = this.$(".media-inline-transcript-body-container");
       var $button = this.$(".media-inline-transcript-button");
 
