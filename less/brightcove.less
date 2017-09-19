@@ -26,13 +26,31 @@
     }
   }
 
+  .brightcove-video-holder:not(.audio-player) {
+    .bc-player-default_default.not-hover.vjs-has-started.vjs-paused.vjs-user-active .vjs-control-bar,
+    .bc-player-default_default.not-hover.vjs-has-started.vjs-paused.vjs-user-inactive .vjs-control-bar,
+    .bc-player-default_default.not-hover.vjs-has-started.vjs-playing.vjs-user-active .vjs-control-bar,
+    .bc-player-default_default.not-hover.vjs-has-started.vjs-playing.vjs-user-inactive .vjs-control-bar,
+    .bc-player-default_default.vjs-has-started.vjs-paused.vjs-ad-playing.vjs-user-inactive .vjs-control-bar,
+    .bc-player-default_default.vjs-has-started.vjs-playing.vjs-user-inactive .vjs-control-bar {
+      visibility: hidden;
+      transform: none;
+      -webkit-transform: none;
+      -ms-transform: none;
+    }
+
+    .video-js .vjs-progress-holder {
+      transition: none;
+    }
+  }
+
   .audio-player {
     .vjs-fullscreen-control {
       display: none !important;
     }
 
     &.minimal-audio-only {
-      height: 30px !important;
+      height: 40px !important;
 
       .vjs-big-play-button {
         display: none !important;
@@ -110,7 +128,7 @@
     display: block;
 
     &.half-width {
-        width: 49%;
+      width: 49%;
     }
   }
 
