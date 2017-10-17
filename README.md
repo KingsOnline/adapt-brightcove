@@ -1,12 +1,14 @@
 adapt-brightcove
 ===============================
 
-A Presentation component allowing Brightcove videos to be embedded natively in Adapt by using the Brightcove APIs to control and track video playback.
+A Presentation component allowing Brightcove videos to be embedded natively in Adapt by using the Brightcove APIs to control and track video playback. Login to your Brightcove account to retrieve your account and video ID as well as the video player settings.
 
-## Usage
 
-Login to your Brightcove account to retrieve your IDs.
+## End of support notice
 
+King's Online will no longer be using Brightcove after January 2018. As such further development and support of this plugin will be terminated. If you are interested in taking over support for this component please contact the maintainer.
+
+## Attributes
 
 ### _accountId
 
@@ -41,10 +43,6 @@ Login to your Brightcove account to retrieve your IDs.
 *   Multiple _audioPlayer used within the same course don't work. Just stick to one.
 *   Unlike the Media component, if you have multiple instances of this component on a page. Playing one won't pause another already in play.
 *   This plugin supports v6+ of the Brightcove player.
-
-## End of support notice
-
-King's Online will no longer be using Brightcove after January 2018. As such further development and support of this plugin will be terminated. If you are interested in taking over support for this component please contact the maintainer.
 
 ---
 
