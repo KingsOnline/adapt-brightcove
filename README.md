@@ -42,6 +42,10 @@ Login to your Brightcove account to retrieve your IDs.
 *   Unlike the Media component, if you have multiple instances of this component on a page. Playing one won't pause another already in play.
 *   This plugin supports v6+ of the Brightcove player.
 
+## End of support notice
+
+King's Online will no longer be using Brightcove after January 2018. As such further development and support of this plugin will be terminated. If you are interested in taking over support for this component please contact the maintainer.
+
 ---
 
 Version number: 1.5.0
