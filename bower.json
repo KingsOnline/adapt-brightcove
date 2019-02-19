@@ -7,7 +7,7 @@
     "authors": [
         "Simon Date <simon.date@kcl.ac.uk>"
     ],
-    "description": "A component for playing Brightcove videos. Support ending soon.",
+    "description": "Brightcove component coverted to Kaltura",
     "main": "/js/adapt-brightcove.js",
     "keywords": [
         "adapt-plugin",

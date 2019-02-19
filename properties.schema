@@ -1,264 +1,320 @@
 {
-  "type": "object",
-  "$schema": "http://json-schema.org/draft-04/schema",
-  "id": "http://jsonschema.net",
-  "$ref": "http://localhost/plugins/content/component/model.schema",
-  "globals": {
-    "ariaRegion": {
-      "type": "string",
-      "required": true,
-      "default": "This is a media player component. Select the play / pause button to watch or listen.",
-      "inputType": "Text",
-      "validators": [],
-      "translatable": true
-    },
-    "transcriptButton": {
-      "type": "string",
-      "required": false,
-      "default": "Alternatively you can select the link below for the transcript.",
-      "inputType": "Text",
-      "validators": [],
-      "translatable": true
-    }
-  },
-  "properties": {
-    "_supportedLayout": {
-      "type": "string",
-      "required": true,
-      "enum": ["full-width", "half-width", "both"],
-      "default": "both",
-      "editorOnly": true
-    },
-    "instruction": {
-      "type": "string",
-      "required": false,
-      "default": "",
-      "inputType": "Text",
-      "validators": [],
-      "help": "This is the instruction text",
-      "translatable": true
-    },
-    "_videoId": {
-      "type": "string",
-      "required": true,
-      "default": "",
-      "inputType": "Text",
-      "validators": [],
-      "title": "Video Id",
-      "help": "Paste the ID from Brightcove into here.",
-      "translatable": false
-    },
-    "_accountId": {
-      "type": "string",
-      "required": true,
-      "default": "",
-      "inputType": "Text",
-      "validators": [],
-      "title": "Account Id",
-      "help": "",
-      "help": "Paste the ID from Brightcove into here.",
-      "translatable": false
-    },
-    "_videoPlayer": {
-      "type": "string",
-      "required": false,
-      "default": "default",
-      "inputType": "Text",
-      "validators": [],
-      "title": "Video Player",
-      "help": "Add the name of the player here.",
-      "translatable": false
-    },
-    "_setCompletionOn": {
-      "type": "string",
-      "required": true,
-      "enum": ["play", "ended"],
-      "default": "play",
-      "title": "Completion trigger",
-      "inputType": {
-        "type": "Select",
-        "options": ["play", "ended"]
-      },
-      "help": "Defines what media event should trigger completion of this component."
-    },
-    "_audioPlayer": {
-      "type": "object",
-      "required": false,
-      "title": "Audio only player",
-      "properties": {
-        "_isEnabled": {
-          "type": "boolean",
-          "required": false,
-          "default": false,
-          "title": "Audio only",
-          "inputType": {
-            "type": "Boolean",
-            "options": [true, false]
-          },
-          "validators": []
+    "type": "object",
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "id": "http://jsonschema.net",
+    "$ref": "http://localhost/plugins/content/component/model.schema",
+    "globals": {
+        "ariaRegion": {
+            "type": "string",
+            "required": true,
+            "default": "This is a media player component. Select the play / pause button to watch or listen.",
+            "inputType": "Text",
+            "validators": [],
+            "translatable": true
         },
-        "_posterImage": {
-          "type": "string",
-          "required": false,
-          "default": "",
-          "title": "Audio poster image",
-          "inputType": "Asset:image",
-          "validators": [],
-          "help": "Select a poster image to go with audio. Leave blank for minimalist player."
+        "transcriptButton": {
+            "type": "string",
+            "required": false,
+            "default": "Alternatively you can select the link below for the transcript.",
+            "inputType": "Text",
+            "validators": [],
+            "translatable": true
         }
-      }
     },
-    "_preventControlBarHide": {
-      "type": "boolean",
-      "required": false,
-      "default": "default",
-      "title": "Prevent Control Bar hiding",
-      "inputType": {
-        "type": "Boolean",
-        "options": ["default", "show", "hide"]
-      },
-      "help": "Defaults to show for audio and hide for video."
-    },
-    "_timestamp": {
-      "type": "object",
-      "required": false,
-      "title": "Timestamp",
-      "properties": {
-        "_isEnabled": {
-          "type": "boolean",
-          "required": false,
-          "default": false,
-          "title": "Enable timestamps",
-          "inputType": {
-            "type": "Boolean",
-            "options": [true, false]
-          }
+    "properties": {
+        "_supportedLayout": {
+            "type": "string",
+            "required": true,
+            "enum": ["full-width", "half-width", "both"],
+            "default": "both",
+            "editorOnly": true
         },
-        "label": {
+        "instruction": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "inputType": "Text",
+            "validators": [],
+            "help": "This is the instruction text",
+            "translatable": true
+        },
+        "_videoId": {
           "type": "string",
-          "required": false,
-          "default": "Timestamps",
-          "title": "Timestamp label",
+          "required": true,
+          "default": "",
           "inputType": "Text",
-          "validators": []
+          "validators": [],
+          "title": "Brightcove Video Id",
+          "help": "The old brightcove video Id",
+          "translatable": false
         },
-        "_items": {
-          "type": "array",
-          "required": false,
-          "title": "Items",
-          "items": {
+        "_entryId": {
+            "type": "string",
+            "required": true,
+            "default": "1_fxui3izl",
+            "inputType": "Text",
+            "validators": [],
+            "title": "Entry Id",
+            "help": "Paste the Entry (video) Id here",
+            "translatable": false
+        },
+        "_partnerId": {
+            "type": "string",
+            "required": true,
+            "default": "2368101",
+            "inputType": "Text",
+            "validators": [],
+            "title": "Partner Id",
+            "help": "Your Partner Id is a 7 digit numerical code. You can find on your Kaltura dashboard",
+            "translatable": false
+        },
+        "_playerId": {
+            "type": "string",
+            "required": true,
+            "default": "42876062",
+            "inputType": "Text",
+            "validators": [],
+            "title": "Player Id",
+            "help": "Paste the player Id here",
+            "translatable": false
+        },
+        "_setCompletionOn": {
+            "type": "string",
+            "required": true,
+            "enum": ["play", "ended"],
+            "default": "play",
+            "title": "Completion trigger",
+            "inputType": {
+                "type": "Select",
+                "options": ["play", "ended"]
+            },
+            "help": "Defines what media event should trigger completion of this component."
+        },
+        "_singlePlayingVideo": {
+            "type": "boolean",
+            "required": false,
+            "default": true,
+            "title": "One playing video",
+            "help": "If enabled when you play start Kaltura media all other Kaltura media is paused.",
+            "inputType": "Checkbox"
+        },
+        "_pictureInPicture": {
             "type": "object",
             "required": false,
+            "title": "Picture in picture (experimental)",
             "properties": {
-              "_time": {
-                "type": "string",
-                "required": true,
-                "inputType": "Number",
-                "title": "Time",
-                "default": "",
-                "validators": ["required"],
-                "help": "Enter in seconds. E.g 80s = 1m20s"
-              },
-              "text": {
-                "type": "string",
-                "required": true,
-                "inputType": "Text",
-                "title": "Timestamp name",
-                "default": "",
-                "validators": ["required"],
-                "help": "The name of the timestamp"
-              }
+                "_isEnabled": {
+                    "type": "boolean",
+                    "required": false,
+                    "default": false,
+                    "title": "Enable PiP mode",
+                    "inputType": "Checkbox"
+                }
             }
-          }
+        },
+        "_captions": {
+            "type": "object",
+            "required": false,
+            "title": "Captions",
+            "properties": {
+                "_isEnabled": {
+                    "type": "boolean",
+                    "required": false,
+                    "default": true,
+                    "title": "Enable Captions",
+                    "inputType": "Checkbox"
+                },
+                "_alwaysHideAtStart": {
+                    "type": "boolean",
+                    "required": false,
+                    "default": false,
+                    "title": "Always hide at start",
+                    "help": "Override browser cookies to always hide",
+                    "inputType": "Checkbox"
+                },
+                "_layout": {
+                    "type": "string",
+                    "required": true,
+                    "enum": ["ontop", "below"],
+                    "default": "ontop",
+                    "title": "Captions position",
+                    "inputType": {
+                        "type": "Select",
+                        "options": ["ontop", "below"]
+                    },
+                    "help": "overlay the captions or show them below the video."
+                }
+            }
+        },
+        "_autoPlayOnScreen": {
+            "type": "object",
+            "required": false,
+            "title": "Auto play scroll",
+            "properties": {
+                "_isEnabled": {
+                    "type": "boolean",
+                    "required": false,
+                    "default": false,
+                    "title": "Enable Auto play scroll",
+                    "help": "Play and pause options for when the learner scrolls in or out",
+                    "inputType": "Checkbox"
+                },
+                "_options": {
+                    "type": "object",
+                    "required": false,
+                    "title": "Options",
+                    "properties": {
+                        "_playOnScreen": {
+                            "type": "boolean",
+                            "required": false,
+                            "default": false,
+                            "title": "Play when scroll in",
+                            "inputType": "Checkbox"
+                        },
+                        "_pauseOffScreen": {
+                            "type": "boolean",
+                            "required": false,
+                            "default": false,
+                            "title": "Pause when scroll out",
+                            "inputType": "Checkbox"
+                        },
+                        "_playOnReturn": {
+                            "type": "boolean",
+                            "required": false,
+                            "default": false,
+                            "title": "Play when you scroll back in",
+                            "inputType": "Checkbox"
+                        }
+                    }
+                }
+            }
+        },
+        "_timestamp": {
+            "type": "object",
+            "required": false,
+            "title": "Timestamp",
+            "properties": {
+                "_isEnabled": {
+                    "type": "boolean",
+                    "required": false,
+                    "default": false,
+                    "title": "Enable timestamps",
+                    "inputType": "Checkbox"
+                },
+                "label": {
+                    "type": "string",
+                    "required": false,
+                    "default": "Timestamps",
+                    "title": "Timestamp label",
+                    "inputType": "Text",
+                    "validators": []
+                },
+                "_items": {
+                    "type": "array",
+                    "required": false,
+                    "title": "Items",
+                    "items": {
+                        "type": "object",
+                        "required": false,
+                        "properties": {
+                            "_time": {
+                                "type": "string",
+                                "required": true,
+                                "inputType": "Number",
+                                "title": "Time",
+                                "default": "",
+                                "validators": ["required"],
+                                "help": "Enter in seconds. E.g 80s = 1m20s"
+                            },
+                            "text": {
+                                "type": "string",
+                                "required": true,
+                                "inputType": "Text",
+                                "title": "Timestamp name",
+                                "default": "",
+                                "validators": ["required"],
+                                "help": "The name of the timestamp"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "_transcript": {
+            "type": "object",
+            "required": false,
+            "title": "Transcript Options",
+            "properties": {
+                "_setCompletionOnView": {
+                    "type": "boolean",
+                    "required": false,
+                    "default": true,
+                    "title": "Trigger completion?",
+                    "inputType": "Checkbox",
+                    "validators": [],
+                    "help": "Set to 'true' to have this component mark as completed when the inline transcript is shown."
+                },
+                "_inlineTranscript": {
+                    "type": "boolean",
+                    "required": false,
+                    "default": true,
+                    "title": "Show Inline",
+                    "inputType": "Checkbox"
+                },
+                "_externalTranscript": {
+                    "type": "boolean",
+                    "required": false,
+                    "default": true,
+                    "title": "Show Link",
+                    "inputType": "Checkbox"
+                },
+                "inlineTranscriptButton": {
+                    "type": "string",
+                    "required": false,
+                    "default": "View transcript",
+                    "title": "Inline Open Button",
+                    "inputType": "Text",
+                    "validators": [],
+                    "translatable": true
+                },
+                "inlineTranscriptCloseButton": {
+                    "type": "string",
+                    "required": false,
+                    "default": "Close",
+                    "title": "Inline Close Button",
+                    "inputType": "Text",
+                    "validators": [],
+                    "translatable": true
+                },
+                "inlineTranscriptBody": {
+                    "type": "string",
+                    "required": false,
+                    "default": "",
+                    "title": "Inline Transcript",
+                    "inputType": "TextArea",
+                    "validators": [],
+                    "help": "Optional text appears below the video",
+                    "translatable": true
+                },
+                "transcriptLinkButton": {
+                    "type": "string",
+                    "required": false,
+                    "default": "Download transcript",
+                    "title": "Transcript Download Button",
+                    "inputType": "Text",
+                    "validators": [],
+                    "translatable": true
+                },
+                "transcriptLink": {
+                    "type": "string",
+                    "required": false,
+                    "default": "",
+                    "title": "Transcript Link",
+                    "inputType": "Asset:other",
+                    "validators": [],
+                    "help": "Select a file for the transcript link"
+                }
+            }
         }
-      }
-    },
-    "_transcript": {
-      "type": "object",
-      "required": false,
-      "title": "Transcript Options",
-      "properties": {
-        "_setCompletionOnView": {
-          "type": "boolean",
-          "required": false,
-          "default": true,
-          "title": "Trigger completion?",
-          "inputType": {
-            "type": "Boolean",
-            "options": [true, false]
-          },
-          "validators": [],
-          "help": "Set to 'true' to have this component mark as completed when the inline transcript is shown."
-        },
-        "_inlineTranscript": {
-          "type": "boolean",
-          "required": false,
-          "default": true,
-          "title": "Show Inline",
-          "inputType": {
-            "type": "Boolean",
-            "options": [true, false]
-          },
-          "validators": []
-        },
-        "_externalTranscript": {
-          "type": "boolean",
-          "required": false,
-          "default": true,
-          "title": "Show Link",
-          "inputType": {
-            "type": "Boolean",
-            "options": [true, false]
-          },
-          "validators": []
-        },
-        "inlineTranscriptButton": {
-          "type": "string",
-          "required": false,
-          "default": "View transcript",
-          "title": "Inline Open Button",
-          "inputType": "Text",
-          "validators": [],
-          "translatable": true
-        },
-        "inlineTranscriptCloseButton": {
-          "type": "string",
-          "required": false,
-          "default": "Close",
-          "title": "Inline Close Button",
-          "inputType": "Text",
-          "validators": [],
-          "translatable": true
-        },
-        "inlineTranscriptBody": {
-          "type": "string",
-          "required": false,
-          "default": "",
-          "title": "Inline Transcript",
-          "inputType": "TextArea",
-          "validators": [],
-          "help": "Optional text appears below the video",
-          "translatable": true
-        },
-        "transcriptLinkButton": {
-          "type": "string",
-          "required": false,
-          "default": "Download transcript",
-          "title": "Transcript Download Button",
-          "inputType": "Text",
-          "validators": [],
-          "translatable": true
-        },
-        "transcriptLink": {
-          "type": "string",
-          "required": false,
-          "default": "",
-          "title": "Transcript Link",
-          "inputType": "Asset:other",
-          "validators": [],
-          "help": "Select a file for the transcript link"
-        }
-      }
     }
-  }
 }
