@@ -1,5 +1,5 @@
 define([
-  "coreViews/componentView", "core/js/adapt", "extensions/adapt-google-analytics/js/adapt-google-analytics"
+  "coreViews/componentView", "core/js/adapt", "./adapt-google-analytics"
 ], function(ComponentView, Adapt, googleAnalytics) {
 
   function waitFor(test, callback) {
