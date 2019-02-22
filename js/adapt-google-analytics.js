@@ -11,9 +11,6 @@ define(['core/js/adapt'], function(Adapt) {
   Adapt.once("pageView:ready", function() {
     ga('set', 'page', googleAnalytics.getUrl());
     ga('send', 'pageview');
-    if (googleAnalytics.findComponent("brightcove").length >= 1) {
-      googleAnalytics.setupBrightcove();
-    }
     googleAnalytics.setupPrintPage();
     googleAnalytics.setupContents();
     googleAnalytics.setupSearch();
@@ -78,20 +75,6 @@ define(['core/js/adapt'], function(Adapt) {
         event.preventDefault();
         Adapt.log.debug('print page fired');
         ga('send', 'event', 'printPage', 'navigation', Adapt.course.get('title'));
-      });
-    },
-
-    setupBrightcove: function() {
-      var context = this;
-      $('body').on('click', '.media-inline-transcript-button', function() {
-        event.preventDefault();
-        var componentID = $(this).closest('.component').attr('data-adapt-id');
-        ga('send', 'event', 'Brightcove-transcript-opened', context.getBrightcoveID(componentID), Adapt.course.get('title'));
-      });
-      $('body').on('click', '.media-external-transcript-button', function(componentId) {
-        event.preventDefault();
-        var componentID = $(this).closest('.component').attr('data-adapt-id');
-        ga('send', 'event', 'Brightcove-transcript-downloaded', context.getBrightcoveID(componentID), Adapt.course.get('title'));
       });
     },
 
@@ -160,10 +143,6 @@ define(['core/js/adapt'], function(Adapt) {
         Adapt.log.debug('Quicknav next');
         ga('send', 'event', 'Quicknav', 'next', Adapt.course.get('title'));
       });
-    },
-
-    getBrightcoveID: function(componentID) {
-      return Adapt.findById(componentID).get('_videoId');
     },
 
     getUrl: function() {
