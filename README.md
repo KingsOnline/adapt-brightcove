@@ -1,6 +1,8 @@
 adapt-brightcove
 ===============================
 
+IMPORTANT NOTE: Please use the kaltura-convert branch for media hosted on Kaltura. The master branch still only works for Brightcove. 
+
 A Presentation component allowing Brightcove videos to be embedded natively in Adapt by using the Brightcove APIs to control and track video playback. Login to your Brightcove account to retrieve your account and video ID as well as the video player settings.
 
 
