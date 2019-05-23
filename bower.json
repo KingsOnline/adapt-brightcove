@@ -2,7 +2,7 @@
     "name": "adapt-brightcove",
     "repository": "git://github.com/kingsonline/adapt-brightcove.git",
     "framework": "^2.0.0",
-    "version": "1.8.3",
+    "version": "1.8.4",
     "homepage": "https://github.com/kingsonline/adapt-brightcove",
     "authors": [
         "Simon Date <simon.date@kcl.ac.uk>"
