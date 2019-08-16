@@ -138,6 +138,7 @@ define([
         'entry_id': this.model.get("_entryId"),
         'flashvars': { // flashvars allows you to set runtime uiVar configuration overrides.
           'autoPlay': false,
+          'IframeCustomPluginCss1': 'https://git.iddkingsonline.com/kaltura/kaltura.css',
           'infoScreen.plugin': 'false',
           'titleLabel.plugin': 'false',
           'related.plugin': 'false',
